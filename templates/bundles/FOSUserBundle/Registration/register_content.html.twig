@@ -1,8 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="container-fluid">
-
-    <div class="registration-form">
+    <h1> Register!</h1>
+    <div class="col-md-12">
 
         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
             {{ form_widget(form) }}
@@ -11,6 +11,5 @@
         </div>
         {{ form_end(form) }}
     </div>
-
 </div>
 
