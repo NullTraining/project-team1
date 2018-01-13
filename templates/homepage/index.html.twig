@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+        <nav class="navbar navbar-light bg-light">
+          <span class="navbar-text">
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                  Hello {{ app.user.username }}
+              {% else %}
+                  Please <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> or <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+              {% endif %}
+          </span>
+        </nav>
+    {% endblock %}
