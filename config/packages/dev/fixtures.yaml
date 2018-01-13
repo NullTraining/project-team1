@@ -6,5 +6,5 @@ services:
 
     #register data fixtures
     App\DataFixtures\ORM\:
-        resource: '../../../src/App/DataFixtures/ORM'
+        resource: '../../../src/DataFixtures/ORM'
         tags: ['doctrine.fixture.orm']
