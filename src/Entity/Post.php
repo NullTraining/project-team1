@@ -4,29 +4,53 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Table(name="posts")
+ * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ */
 class Post
 {
     /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id()
+     *
      * @var int
      */
     private $id;
+
     /**
+     * @ORM\Column(type="string", length=200, nullable=false)
+     *
      * @var string
      */
     private $title;
+
     /**
+     * @ORM\Column(type="text", nullable=false)
+     *
      * @var string
      */
     private $content;
+
     /**
+     * @ORM\Column(type="datetime", nullable=false)
+     *
      * @var \DateTime
      */
     private $createdAt;
+
     /**
+     * @ORM\Column(type="string", length=50, nullable=false)
+     *
      * @var string
      */
     private $author;
+
     /**
+     * @ORM\Column(type="string", length=50, nullable=false))
+     *
      * @var string
      */
     private $category;
