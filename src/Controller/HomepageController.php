@@ -11,7 +11,7 @@ class HomepageController
 {
     /**
      * @Template()
-    */
+     */
     public function indexAction()
     {
 //        return new JsonResponse(['id'=>1,'name'=>'John']);
