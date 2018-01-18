@@ -20,6 +20,9 @@ class PostsFixtures extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($postOne);
         $manager->persist($postTwo);
 
+        $this->addReference('postOne', $postOne);
+        $this->addReference('postTwo', $postTwo);
+
         $manager->flush();
     }
 
