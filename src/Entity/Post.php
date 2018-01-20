@@ -50,8 +50,9 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=50, nullable=false))
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts")
      *
-     * @var string
+     * @var Category
      */
     private $category;
 
@@ -63,9 +64,10 @@ class Post
      * @param string    $content
      * @param \DateTime $createdAt
      * @param string    $author
-     * @param string    $category
+     * @param Category  $category
      */
-    public function __construct(int $id, string $title, string $content, \DateTime $createdAt, string $author, string $category)
+    public function __construct(int $id, string $title, string $content, \DateTime $createdAt, string $author, Category
+    $category)
     {
         $this->id        = $id;
         $this->title     = $title;
@@ -116,9 +118,9 @@ class Post
     }
 
     /**
-     * @return string
+     * @return Category
      */
-    public function getCategory(): string
+    public function getCategory(): Category
     {
         return $this->category;
     }
