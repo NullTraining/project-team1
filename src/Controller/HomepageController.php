@@ -2,26 +2,14 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class HomepageController
+class HomepageController extends Controller
 {
-    /**
-     * @Template()
-     */
+
     public function indexAction()
     {
-//        return new JsonResponse(['id'=>1,'name'=>'John']);
+        return $this->render('homepage/index.html.twig');
     }
 
-    /**
-     * @Route("/hello")
-     */
-    public function helloAction()
-    {
-        return new Response('Hello');
-    }
 }
