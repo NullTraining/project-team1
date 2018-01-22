@@ -42,7 +42,7 @@ jobs:
 
       - run:
           name: Php-cs-fixer
-          command: php vendor/bin/php-cs-fixer fix -vvv
+          command: php vendor/bin/php-cs-fixer fix --dry-run --diff
           
       - save_cache:
           key: cache-v1-{{ checksum "composer.lock" }}
