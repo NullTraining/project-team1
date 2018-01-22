@@ -1,4 +1,45 @@
-{% extends "@FOSUser/layout.html.twig" %}
-{% block fos_user_content %}
-    {{ include('@FOSUser/Security/login_content.html.twig') }}
-{% endblock fos_user_content %}
+{% extends "base.html.twig" %}
+{% block body %}
+
+    <div class="container-fluid">
+
+        <div class="col-md-4 mx-auto">
+
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Sign In</h3>
+                </div>
+
+                    <form action="{{ path("fos_user_security_check") }}" method="post">
+                        {% if csrf_token %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                        {% endif %}
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}"
+                                   required="required" autocomplete="username"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" type="password" id="password" name="_password" required="required"
+                                   autocomplete="current-password"/>
+                        </div>
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                            <label for="remember_me">Remember me</label>
+                        </div>
+                        <input class="btn btn-success" type="submit" id="_submit" name="_submit" value="login"/>
+                    </form>
+            </div>
+
+            <br>
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+
+        </div>
+    </div>
+
+{% endblock body %}
