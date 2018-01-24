@@ -16,7 +16,6 @@ class UsersFixtures extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-
         // Creates admin user
         $admin = new User();
         $admin->setUsername('admin');
@@ -40,7 +39,6 @@ class UsersFixtures extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('user-regular', $visitor);
 
         $manager->flush();
-
     }
 
     /**
