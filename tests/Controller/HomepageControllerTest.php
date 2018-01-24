@@ -14,7 +14,7 @@ class HomepageControllerTest extends WebTestCase
 
         $client->request('GET', $url);
 
-        $greetMessage = '<html>';
-        self::assertContains($greetMessage, $client->getResponse()->getContent());
+        $expectedToSee = 'Intranet';
+        self::assertContains($expectedToSee, $client->getResponse()->getContent());
     }
 }
