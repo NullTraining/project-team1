@@ -11,7 +11,7 @@ use App\Entity\Post;
 class PostController extends Controller
 {
     /**
-     * @Route("/posts", name="posts")
+     * @Route("/posts", name="posts.index")
      */
     public function index()
     {
