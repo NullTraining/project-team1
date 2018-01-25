@@ -14,7 +14,7 @@ class HomepageControllerTest extends WebTestCase
 
         $client->request('GET', $url);
 
-        $greetMessage = 'Please <a href="/login">Log in</a> or <a href="/register/">Register</a>';
+        $greetMessage = '<html>';
         self::assertContains($greetMessage, $client->getResponse()->getContent());
     }
 }
