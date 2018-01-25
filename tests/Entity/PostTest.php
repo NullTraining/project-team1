@@ -79,4 +79,11 @@ class PostTest extends TestCase
     {
         self::assertEquals($this->archived, $this->post->isArchived());
     }
+
+    public function testPostCanBeArchived()
+    {
+        $this->post->archive();
+
+        self::assertTrue($this->post->isArchived());
+    }
 }
