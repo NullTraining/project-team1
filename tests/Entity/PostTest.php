@@ -20,6 +20,8 @@ class PostTest extends TestCase
     private $content;
     /** @var Post */
     private $post;
+    /** @var  boolean */
+    private $archived;
     /** @var \DateTime */
     private $createdAt;
     /** @var string */
@@ -32,6 +34,7 @@ class PostTest extends TestCase
         $this->id           = 12345;
         $this->title        = 'test post title';
         $this->content      = 'test post title';
+        $this->archived     = false;
         $this->createdAt    = new \DateTime('now');
         $this->author       = 'Test Post Author';
         $this->category     = Mockery::mock(Category::class);
@@ -73,6 +76,11 @@ class PostTest extends TestCase
         self::assertEquals($this->category, $this->post->getCategory());
     }
 
+    public function testGetPostArchived()
+    {
+        self::assertEquals($this->archived, $this->post->isArchived());
+    }
+
     public function testGetPostCommentsCount()
     {
         $postComment  = Mockery::mock(PostComment::class);
@@ -89,5 +97,12 @@ class PostTest extends TestCase
         $this->post->addComment($postComment);
 
         self::assertEquals(1, $this->post->getComments()->contains($postComment));
+    }
+
+    public function testPostCanBeArchived()
+    {
+        $this->post->archive();
+
+        self::assertTrue($this->post->isArchived());
     }
 }

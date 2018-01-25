@@ -36,6 +36,13 @@ class Post
     private $content;
 
     /**
+     * @ORM\Column(type="boolean", nullable=false)
+     *
+     * @var boolean
+     */
+    private $archived;
+
+    /**
      * @ORM\Column(type="datetime", nullable=false)
      *
      * @var \DateTime
@@ -50,7 +57,8 @@ class Post
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts", cascade={"persist"})
+     * @ORM\Column(type="string", length=50, nullable=false))
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts")
      *
      * @var Category
      */
@@ -78,6 +86,7 @@ class Post
         $this->id        = $id;
         $this->title     = $title;
         $this->content   = $content;
+        $this->archived  = false;
         $this->createdAt = $createdAt;
         $this->author    = $author;
         $this->category  = $category;
@@ -147,5 +156,18 @@ class Post
     public function getComments(): ArrayCollection
     {
         return $this->comments;
+    }
+
+    public function archive()
+    {
+        $this->archived = true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isArchived(): bool
+    {
+        return $this->archived;
     }
 }
