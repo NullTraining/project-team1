@@ -79,6 +79,7 @@ class Post
         $this->id        = $id;
         $this->title     = $title;
         $this->content   = $content;
+        $this->archived  = false;
         $this->createdAt = $createdAt;
         $this->author    = $author;
         $this->category  = $category;
