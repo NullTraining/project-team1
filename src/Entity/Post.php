@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +57,12 @@ class Post
     private $category;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post", cascade={"persist"})
+     */
+    private $comments;
+
+    /**
      * Post constructor.
      *
      * @param int       $id
@@ -74,6 +81,8 @@ class Post
         $this->createdAt = $createdAt;
         $this->author    = $author;
         $this->category  = $category;
+
+        $this->comments  = new ArrayCollection();
     }
 
     /**
@@ -122,5 +131,21 @@ class Post
     public function getCategory(): Category
     {
         return $this->category;
+    }
+
+    /**
+     * @param PostComment $postComment
+     */
+    public function addComment(PostComment $postComment): void
+    {
+        $this->comments->add($postComment);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getComments(): ArrayCollection
+    {
+        return $this->comments;
     }
 }
