@@ -35,6 +35,13 @@ class Post
     private $content;
 
     /**
+     * @ORM\Column(type="boolean", nullable=false)
+     *
+     * @var boolean
+     */
+    private $archived;
+
+    /**
      * @ORM\Column(type="datetime", nullable=false)
      *
      * @var \DateTime
@@ -123,5 +130,15 @@ class Post
     public function getCategory(): Category
     {
         return $this->category;
+    }
+
+    public function archive()
+    {
+        $this->archived = true;
+    }
+
+    public function isArchived()
+    {
+        return $this->archived;
     }
 }
