@@ -141,7 +141,7 @@ class Post
     /**
      * @return bool
      */
-    public function isArchived(): Boolean
+    public function isArchived(): bool
     {
         return $this->archived;
     }
