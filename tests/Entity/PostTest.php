@@ -20,7 +20,7 @@ class PostTest extends TestCase
     private $content;
     /** @var Post */
     private $post;
-    /** @var  boolean */
+    /** @var bool */
     private $archived;
     /** @var \DateTime */
     private $createdAt;
