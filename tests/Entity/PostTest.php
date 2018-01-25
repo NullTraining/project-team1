@@ -6,6 +6,7 @@ namespace App\Tests\Entity;
 
 use App\Entity\Category;
 use App\Entity\Post;
+use App\Entity\PostComment;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -70,5 +71,23 @@ class PostTest extends TestCase
     public function testGetPostCategory()
     {
         self::assertEquals($this->category, $this->post->getCategory());
+    }
+
+    public function testGetPostCommentsCount()
+    {
+        $postComment  = Mockery::mock(PostComment::class);
+
+        $this->post->addComment($postComment);
+
+        self::assertEquals(1, $this->post->getComments()->count());
+    }
+
+    public function testPostCommentIsAdded()
+    {
+        $postComment  = Mockery::mock(PostComment::class);
+
+        $this->post->addComment($postComment);
+
+        self::assertEquals(1, $this->post->getComments()->contains($postComment));
     }
 }
