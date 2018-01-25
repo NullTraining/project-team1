@@ -37,7 +37,7 @@ class Post
     /**
      * @ORM\Column(type="boolean", nullable=false)
      *
-     * @var boolean
+     * @var bool
      */
     private $archived;
 
