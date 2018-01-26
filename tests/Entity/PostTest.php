@@ -19,6 +19,8 @@ class PostTest extends TestCase
     private $content;
     /** @var Post */
     private $post;
+    /** @var bool */
+    private $archived;
     /** @var \DateTime */
     private $createdAt;
     /** @var string */
@@ -31,6 +33,7 @@ class PostTest extends TestCase
         $this->id           = 12345;
         $this->title        = 'test post title';
         $this->content      = 'test post title';
+        $this->archived     = false;
         $this->createdAt    = new \DateTime('now');
         $this->author       = 'Test Post Author';
         $this->category     = Mockery::mock(Category::class);
@@ -70,5 +73,17 @@ class PostTest extends TestCase
     public function testGetPostCategory()
     {
         self::assertEquals($this->category, $this->post->getCategory());
+    }
+
+    public function testGetPostArchived()
+    {
+        self::assertEquals($this->archived, $this->post->isArchived());
+    }
+
+    public function testPostCanBeArchived()
+    {
+        $this->post->archive();
+
+        self::assertTrue($this->post->isArchived());
     }
 }
