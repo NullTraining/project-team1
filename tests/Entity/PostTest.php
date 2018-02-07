@@ -7,6 +7,7 @@ namespace App\Tests\Entity;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\PostComment;
+use App\Entity\User;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -33,7 +34,7 @@ class PostTest extends TestCase
         $this->title        = 'test post title';
         $this->content      = 'test post title';
         $this->createdAt    = new \DateTime('now');
-        $this->author       = 'Test Post Author';
+        $this->author       = Mockery::mock(User::class);
         $this->category     = Mockery::mock(Category::class);
         $this->post         = new Post($this->id, $this->title, $this->content, $this->createdAt, $this->author, $this->category);
     }

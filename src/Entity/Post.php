@@ -43,9 +43,9 @@ class Post
     private $createdAt;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
      *
-     * @var string
+     * @var User
      */
     private $author;
 
@@ -69,10 +69,10 @@ class Post
      * @param string    $title
      * @param string    $content
      * @param \DateTime $createdAt
-     * @param string    $author
+     * @param User      $author
      * @param Category  $category
      */
-    public function __construct(int $id, string $title, string $content, \DateTime $createdAt, string $author, Category
+    public function __construct(int $id, string $title, string $content, \DateTime $createdAt, User $author, Category
     $category)
     {
         $this->id        = $id;
@@ -120,7 +120,7 @@ class Post
     /**
      * @return string
      */
-    public function getAuthor(): string
+    public function getAuthor(): User
     {
         return $this->author;
     }
