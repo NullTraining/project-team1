@@ -28,6 +28,12 @@ class User extends BaseUser
     private $comments;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="author")
+     */
+    private $posts;
+
+    /**
      * @var bool
      */
     private $administrator;
@@ -38,6 +44,7 @@ class User extends BaseUser
 
         $this->administrator = false;
         $this->comments      = new ArrayCollection();
+        $this->posts         = new ArrayCollection();
     }
 
     /**
@@ -46,6 +53,14 @@ class User extends BaseUser
     public function getComments(): ArrayCollection
     {
         return $this->comments;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getPosts(): ArrayCollection
+    {
+        return $this->posts;
     }
 
     /**
