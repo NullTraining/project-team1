@@ -136,5 +136,4 @@ class PostTest extends TestCase
 
         self::assertFalse($this->post->isArchived());
     }
-
 }

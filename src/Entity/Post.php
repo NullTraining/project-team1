@@ -89,14 +89,14 @@ class Post
     public function __construct(int $id, string $title, string $content, \DateTime $createdAt, User $author, Category
     $category)
     {
-        $this->id        = $id;
-        $this->title     = $title;
-        $this->content   = $content;
-        $this->archived  = false;
+        $this->id         = $id;
+        $this->title      = $title;
+        $this->content    = $content;
+        $this->archived   = false;
         $this->active     = true;
-        $this->createdAt = $createdAt;
-        $this->author    = $author;
-        $this->category  = $category;
+        $this->createdAt  = $createdAt;
+        $this->author     = $author;
+        $this->category   = $category;
 
         $this->comments  = new ArrayCollection();
     }
@@ -168,7 +168,7 @@ class Post
     public function archive()
     {
         $this->archived = true;
-        $this->active = false;
+        $this->active   = false;
     }
 
     /**
@@ -181,7 +181,7 @@ class Post
 
     public function activate()
     {
-        $this->active = true;
+        $this->active   = true;
         $this->archived = false;
     }
 
