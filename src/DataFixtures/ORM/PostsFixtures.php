@@ -13,13 +13,15 @@ class PostsFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+        $CEO = $this->getReference('user-admin');
+
         $declarations    = $this->getReference('category-declarations');
         $businessReports = $this->getReference('category-business-reports');
 
-        $declarationPost = new Post(1234, 'We\'re starting a company', 'Because we\'re cool!', new \DateTime('now'), 'CEO To Be',
+        $declarationPost = new Post(1234, 'We\'re starting a company', 'Because we\'re cool!', new \DateTime('now'), $CEO,
         $declarations);
 
-        $businessReportPost = new Post(4321, 'We\'re rich!', 'Because we have a clearly superior product, ...', new \DateTime('now'), 'CEO', $businessReports);
+        $businessReportPost = new Post(4321, 'We\'re rich!', 'Because we have a clearly superior product, ...', new \DateTime('now'), $CEO, $businessReports);
 
         $manager->persist($declarationPost);
         $manager->persist($businessReportPost);

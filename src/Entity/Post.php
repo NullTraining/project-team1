@@ -64,8 +64,7 @@ class Post
     private $author;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=false))
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts", cascade={"persist"})
      *
      * @var Category
      */
