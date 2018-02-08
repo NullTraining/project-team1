@@ -43,6 +43,13 @@ class Post
     private $archived;
 
     /**
+     * @ORM\Column(type="boolean", nullable=false)
+     *
+     * @var bool
+     */
+    private $active;
+
+    /**
      * @ORM\Column(type="datetime", nullable=false)
      *
      * @var \DateTime
@@ -87,6 +94,7 @@ class Post
         $this->title     = $title;
         $this->content   = $content;
         $this->archived  = false;
+        $this->active     = true;
         $this->createdAt = $createdAt;
         $this->author    = $author;
         $this->category  = $category;
@@ -161,6 +169,7 @@ class Post
     public function archive()
     {
         $this->archived = true;
+        $this->active = false;
     }
 
     /**
@@ -169,5 +178,24 @@ class Post
     public function isArchived(): bool
     {
         return $this->archived;
+    }
+
+    public function activate()
+    {
+        $this->active = true;
+        $this->archived = false;
+    }
+
+    public function deactivate()
+    {
+        $this->active = false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return $this->active;
     }
 }
