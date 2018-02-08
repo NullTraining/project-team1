@@ -23,6 +23,8 @@ class PostTest extends TestCase
     private $post;
     /** @var bool */
     private $archived;
+    /** @var bool */
+    private $active;
     /** @var \DateTime */
     private $createdAt;
     /** @var string */
@@ -36,6 +38,7 @@ class PostTest extends TestCase
         $this->title        = 'test post title';
         $this->content      = 'test post title';
         $this->archived     = false;
+        $this->active       = true;
         $this->createdAt    = new \DateTime('now');
         $this->author       = Mockery::mock(User::class);
         $this->category     = Mockery::mock(Category::class);
@@ -82,6 +85,11 @@ class PostTest extends TestCase
         self::assertEquals($this->archived, $this->post->isArchived());
     }
 
+    public function testGetPostActive()
+    {
+        self::assertEquals($this->active, $this->post->isActive());
+    }
+
     public function testGetPostCommentsCount()
     {
         $postComment  = Mockery::mock(PostComment::class);
@@ -106,4 +114,27 @@ class PostTest extends TestCase
 
         self::assertTrue($this->post->isArchived());
     }
+
+    public function testPostCanBeDeactivated()
+    {
+        $this->post->deactivate();
+
+        self::assertFalse($this->post->isActive());
+    }
+
+    public function testArchivedPostIsNotActive()
+    {
+        $this->post->archive();
+
+        self::assertFalse($this->post->isActive());
+    }
+
+    public function testActivateActionWillUnarchivePost()
+    {
+        $this->post->archive();
+        $this->post->activate();
+
+        self::assertFalse($this->post->isArchived());
+    }
+
 }
