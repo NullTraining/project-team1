@@ -42,6 +42,10 @@ jobs:
           command: php bin/console doctrine:migrations:migrate --no-interaction
 
       - run:
+          name: Load data fixtures
+          command: php bin/console doctrine:fixtures:load --no-interaction
+
+      - run:
           name: PHPUnit
           command: ./vendor/bin/simple-phpunit
 
