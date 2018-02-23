@@ -10,10 +10,9 @@
     <exclude-pattern>cache/</exclude-pattern>
     <exclude-pattern>SymfonyRequirements.php</exclude-pattern>
     <exclude-pattern>AppKernel.php</exclude-pattern>
-    <exclude-pattern>DoctrineMigrations/Version*.php</exclude-pattern>
+    <exclude-pattern>Migrations/Version*.php</exclude-pattern>
     <exclude-pattern>DependencyInjection/Configuration.php</exclude-pattern>
     <exclude-pattern>DependencyInjection/*Extension.php</exclude-pattern>
-    <exclude-pattern>src/AppBundle/Controller/DefaultController.php</exclude-pattern>
     <rule ref="rulesets/codesize.xml/CyclomaticComplexity"/>
     <rule ref="rulesets/codesize.xml/NPathComplexity"/>
     <rule ref="rulesets/codesize.xml/ExcessiveMethodLength"/>
