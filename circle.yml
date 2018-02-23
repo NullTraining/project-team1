@@ -58,6 +58,10 @@ jobs:
           name: Ship codecoverage to codecov.io
           command: bash <(curl -s https://codecov.io/bash)
           
+      - run:
+          name: PHPMD
+          command: vendor/bin/phpmd src/ text phpmd.xml
+          
       - save_cache:
           key: cache-v1-{{ checksum "composer.lock" }}
           paths:
