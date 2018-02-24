@@ -50,7 +50,7 @@ class PostTest extends TestCase
         self::assertInstanceOf(Post::class, $this->post);
     }
 
-    public function testGetPostID()
+    public function testGetPostId()
     {
         self::assertEquals($this->id, $this->post->getId());
     }
