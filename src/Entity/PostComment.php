@@ -38,7 +38,9 @@ class PostComment
      */
     private $user;
 
-    /** @var \DateTime $timestamp */
+    /** @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
+     */
     private $timestamp;
 
     public function __construct()

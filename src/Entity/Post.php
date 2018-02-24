@@ -79,9 +79,9 @@ class Post
 
     public function __construct()
     {
-        $this->archived   = false;
-        $this->active     = true;
-        $this->comments   = new ArrayCollection();
+        $this->archived = false;
+        $this->active   = true;
+        $this->comments = new ArrayCollection();
     }
 
     /**
