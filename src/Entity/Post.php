@@ -149,7 +149,7 @@ class Post
     }
 
     /**
-     * @return string
+     * @return \App\Entity\User
      */
     public function getAuthor(): User
     {
@@ -165,7 +165,7 @@ class Post
     }
 
     /**
-     * @return Category
+     * @return \App\Entity\Category
      */
     public function getCategory(): Category
     {
@@ -189,7 +189,7 @@ class Post
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getComments(): Collection
     {
