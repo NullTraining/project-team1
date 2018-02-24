@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\ORM;
 
+use App\Entity\Category;
 use App\Entity\Post;
+use App\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -13,11 +15,15 @@ class PostsFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+        /** @var User $ceo */
         $ceo = $this->getReference('user-admin');
 
+        /** @var Category $declarations */
         $declarations    = $this->getReference('category-declarations');
+        /** @var Category $businessReports */
         $businessReports = $this->getReference('category-business-reports');
 
+        /** @var Post $declarationPost */
         $declarationPost = new Post();
 
         $declarationPost->setId(1234);
@@ -27,6 +33,7 @@ class PostsFixtures extends AbstractFixture implements OrderedFixtureInterface
         $declarationPost->setAuthor($ceo);
         $declarationPost->setCategory($declarations);
 
+        /** @var Post $businessReportPost */
         $businessReportPost = new Post();
 
         $businessReportPost->setId(4321);
