@@ -10,7 +10,7 @@ use App\Repository\PostCommentRepository;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class PostRepositoryTest extends KernelTestCase
+class PostCommentRepositoryTest extends KernelTestCase
 {
     /** @var PostRepository */
     private $repository;
