@@ -14,7 +14,9 @@ class PostControllerRoutesTest extends WebTestCase
         $client = self::createClient();
         $client->request('GET', $url);
 
-        $this->assertTrue($client->getResponse()->isSuccessful());
+        if (null !== ($client->getResponse())) {
+            $this->assertTrue($client->getResponse()->isSuccessful());
+        }
     }
 
     public function urlProvider()
