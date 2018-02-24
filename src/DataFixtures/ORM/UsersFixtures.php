@@ -24,6 +24,14 @@ class UsersFixtures extends AbstractFixture implements OrderedFixtureInterface
         $admin->setRoles(['ROLE_SUPER_ADMIN']);
         $admin->setEnabled(true);
 
+        // Creates non-admin - regular user
+        $regularUser = new User();
+        $regularUser->setUsername('user');
+        $regularUser->setPlainPassword('user');
+        $regularUser->setEmail('user@example.com');
+        $regularUser->setRoles(['ROLE_USER']);
+        $regularUser->setEnabled(true);
+
         // Creates visitor
         $visitor = new User();
         $visitor->setUsername('visitor');
@@ -33,10 +41,12 @@ class UsersFixtures extends AbstractFixture implements OrderedFixtureInterface
         $visitor->setEnabled(true);
 
         $manager->persist($admin);
+        $manager->persist($regularUser);
         $manager->persist($visitor);
 
         $this->addReference('user-admin', $admin);
-        $this->addReference('user-regular', $visitor);
+        $this->addReference('user-regular', $regularUser);
+        $this->addReference('user-visitor', $visitor);
 
         $manager->flush();
     }
