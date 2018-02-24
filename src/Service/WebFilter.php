@@ -6,7 +6,7 @@ namespace App\Service;
 
 class WebFilter
 {
-    /** @var int */
+    /** @var int|null */
     private $category;
 
     /** @var int */
