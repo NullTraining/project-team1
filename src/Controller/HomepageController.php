@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class HomepageController extends Controller
+class HomepageController
 {
+    /**
+     * @Template("homepage/index.html.twig")
+     */
     public function indexAction()
     {
-        return $this->render('homepage/index.html.twig');
+        return [];
     }
 }
