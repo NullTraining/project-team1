@@ -8,6 +8,7 @@
     <div class="ml-auto">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <span class="navbar-text">Hello {{ app.user.username }}</span>
+            <a class="btn btn-outline-success" role="button" href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
         {% else %}
             <a class="btn btn-outline-success" role="button" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
         {% endif %}
