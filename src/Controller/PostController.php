@@ -3,32 +3,39 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Repository\PostRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class PostController extends Controller
+class PostController
 {
+    /** @var PostRepository */
+    private $postRepository;
+
+    public function __construct(PostRepository $postRepository)
+    {
+        $this->postRepository = $postRepository;
+    }
+
     /**
      * @Route("/posts", name="posts.index")
+     * @Template("post/index.html.twig")
      */
     public function index()
     {
-        $posts = $this->getDoctrine()
-            ->getRepository(Post::class)
-            ->findAll();
+        $posts = $this->postRepository->findAll();
 
-        return $this->render('post/index.html.twig', ['posts' => $posts]);
+        return  ['posts' => $posts];
     }
 
     /**
      * @Route("/posts/show/{id}", name="posts.show")
+     * @Template("post/show.html.twig")
      */
     public function show($id)
     {
-        $post = $this->getDoctrine()
-            ->getRepository(Post::class)
-            ->find($id);
+        $post = $this->postRepository->find($id);
 
-        return $this->render('post/show.html.twig', ['post' => $post]);
+        return ['post' => $post];
     }
 }
