@@ -13,8 +13,13 @@ class PostCategoryFixtures extends AbstractFixture implements OrderedFixtureInte
 {
     public function load(ObjectManager $manager)
     {
-        $declarations    = new Category(666, 'Declarations');
-        $businessReports = new Category(696, 'Business Reports');
+        $declarations    = new Category();
+        $declarations->setId(666);
+        $declarations->setName('Declarations');
+
+        $businessReports = new Category();
+        $businessReports->setId(696);
+        $businessReports->setName('Business Reports');
 
         $this->addReference('category-declarations', $declarations);
         $this->addReference('category-business-reports', $businessReports);

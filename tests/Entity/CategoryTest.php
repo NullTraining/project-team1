@@ -29,7 +29,11 @@ class CategoryTest extends TestCase
         $this->categoryName  = 'Test Category Name';
         $this->categoryPosts = Mockery::mock(ArrayCollection::class);
         $this->post          = Mockery::mock(Post::class);
-        $this->category      = new Category($this->categoryId, $this->categoryName);
+
+        /* Set up Category */
+        $this->category      = new Category();
+        $this->category->setId($this->categoryId);
+        $this->category->setName($this->categoryName);
     }
 
     public function testCategoryCanBeCreated()
