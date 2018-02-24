@@ -77,29 +77,19 @@ class Post
      */
     private $comments;
 
-    /**
-     * Post constructor.
-     *
-     * @param int       $id
-     * @param string    $title
-     * @param string    $content
-     * @param \DateTime $createdAt
-     * @param User      $author
-     * @param Category  $category
-     */
-    public function __construct(int $id, string $title, string $content, \DateTime $createdAt, User $author, Category
-    $category)
+    public function __construct()
     {
-        $this->id         = $id;
-        $this->title      = $title;
-        $this->content    = $content;
         $this->archived   = false;
         $this->active     = true;
-        $this->createdAt  = $createdAt;
-        $this->author     = $author;
-        $this->category   = $category;
+        $this->comments   = new ArrayCollection();
+    }
 
-        $this->comments  = new ArrayCollection();
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
@@ -119,11 +109,27 @@ class Post
     }
 
     /**
+     * @param string $title
+     */
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    /**
      * @return string
      */
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    /**
+     * @param string $content
+     */
+    public function setContent(string $content): void
+    {
+        $this->content = $content;
     }
 
     /**
@@ -135,6 +141,14 @@ class Post
     }
 
     /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt(\DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
      * @return string
      */
     public function getAuthor(): User
@@ -143,11 +157,27 @@ class Post
     }
 
     /**
+     * @param \App\Entity\User $author
+     */
+    public function setAuthor(\App\Entity\User $author): void
+    {
+        $this->author = $author;
+    }
+
+    /**
      * @return Category
      */
     public function getCategory(): Category
     {
         return $this->category;
+    }
+
+    /**
+     * @param \App\Entity\Category $category
+     */
+    public function setCategory(\App\Entity\Category $category): void
+    {
+        $this->category = $category;
     }
 
     /**

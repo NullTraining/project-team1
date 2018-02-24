@@ -36,13 +36,21 @@ class PostTest extends TestCase
     {
         $this->id           = 12345;
         $this->title        = 'test post title';
-        $this->content      = 'test post title';
+        $this->content      = 'test post content';
         $this->archived     = false;
         $this->active       = true;
         $this->createdAt    = new \DateTime('now');
         $this->author       = Mockery::mock(User::class);
         $this->category     = Mockery::mock(Category::class);
-        $this->post         = new Post($this->id, $this->title, $this->content, $this->createdAt, $this->author, $this->category);
+        $this->post         = new Post();
+
+        /* Set up the Post */
+        $this->post->setId($this->id);
+        $this->post->setTitle($this->title);
+        $this->post->setContent($this->content);
+        $this->post->setAuthor($this->author);
+        $this->post->setCategory($this->category);
+        $this->post->setCreatedAt($this->createdAt);
     }
 
     public function testPostCanBeCreated()
