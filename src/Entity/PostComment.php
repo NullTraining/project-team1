@@ -41,28 +41,8 @@ class PostComment
     /** @var \DateTime $timestamp */
     private $timestamp;
 
-    /**
-     * PostComment constructor.
-     *
-     * Comment must be a non-empty string.
-     *
-     * @param int    $id
-     * @param string $comment
-     * @param Post   $post
-     * @param User   $user
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function __construct(int $id, string $comment, Post $post, User $user)
+    public function __construct()
     {
-        if ('' === $comment) {
-            throw new \InvalidArgumentException('Post Comment cannot be empty.', 0);
-        }
-
-        $this->post      = $id;
-        $this->comment   = $comment;
-        $this->post      = $post;
-        $this->user      = $user;
         $this->timestamp = new \DateTime('now');
     }
 
@@ -75,11 +55,33 @@ class PostComment
     }
 
     /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return string
      */
     public function getComment(): string
     {
         return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function setComment(string $comment): void
+    {
+        if ('' === $comment) {
+            throw new \InvalidArgumentException('Post Comment cannot be empty.', 0);
+        }
+
+        $this->comment = $comment;
     }
 
     /**
@@ -91,11 +93,27 @@ class PostComment
     }
 
     /**
+     * @param \App\Entity\Post $post
+     */
+    public function setPost(\App\Entity\Post $post): void
+    {
+        $this->post = $post;
+    }
+
+    /**
      * @return User
      */
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    /**
+     * @param \App\Entity\User $user
+     */
+    public function setUser(\App\Entity\User $user): void
+    {
+        $this->user = $user;
     }
 
     /**

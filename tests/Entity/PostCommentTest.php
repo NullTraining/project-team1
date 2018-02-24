@@ -20,15 +20,23 @@ class PostCommentTest extends TestCase
     private $comment;
     /** @var Post $post */
     private $post;
+    /** @var \DateTime */
+    private $timestamp;
 
     public function setUp()
     {
-        $this->id      = 12345;
-        $this->comment = 'Post Comment Text';
-        $this->post    = Mockery::mock(Post::class);
-        $this->user    = Mockery::mock(User::class);
+        $this->id        = 12345;
+        $this->comment   = 'Post Comment Text';
+        $this->post      = Mockery::mock(Post::class);
+        $this->user      = Mockery::mock(User::class);
+        $this->timestamp = new \DateTime('now');
 
-        $this->postComment = new PostComment($this->id, $this->comment, $this->post, $this->user);
+        /* Set up PostComment */
+        $this->postComment = new PostComment();
+        $this->postComment->setId($this->id);
+        $this->postComment->setPost($this->post);
+        $this->postComment->setComment($this->comment);
+        $this->postComment->setUser($this->user);
     }
 
     public function testPostCommentCanBeCreated()
@@ -44,7 +52,11 @@ class PostCommentTest extends TestCase
     public function testCommentTextCannotBeEmpty()
     {
         $this->expectException(\InvalidArgumentException::class);
-        new PostComment(6645, '', $this->post, $this->user);
+        $postComment = new PostComment();
+        $postComment->setId($this->id);
+        $postComment->setPost($this->post);
+        $postComment->setComment('');
+        $postComment->setUser($this->user);
     }
 
     public function testCommentHasTimestamp()
