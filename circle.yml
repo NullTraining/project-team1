@@ -60,7 +60,7 @@ jobs:
           
       - run:
           name: PHPMD
-          command: vendor/bin/phpmd src/ text phpmd.xml
+          command: vendor/bin/phing phpmd
 
       - run:
           name: PHP Code Sniffer
