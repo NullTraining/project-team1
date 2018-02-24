@@ -48,7 +48,7 @@ jobs:
 
       - run:
           name: PHPUnit
-          command: ./vendor/bin/simple-phpunit
+          command: vendor/bin/phing phpunit
 
       - run:
           name: Php-cs-fixer
