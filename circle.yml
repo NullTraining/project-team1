@@ -63,13 +63,9 @@ jobs:
           command: vendor/bin/phpmd src/ text phpmd.xml
 
       - run:
-          name: PHP Code Sniffer on src
-          command: vendor/bin/phpcs --standard=phpcs.xml src -n
+          name: PHP Code Sniffer
+          command: vendor/bin/phing phpcs
 
-      - run:
-          name: PHP Code Sniffer on tests
-          command: vendor/bin/phpcs --standard=phpcs.xml tests -n
-          
       - save_cache:
           key: cache-v1-{{ checksum "composer.lock" }}
           paths:
