@@ -15,13 +15,9 @@ class PostRepositoryTest extends KernelTestCase
 
     public function setup()
     {
-        $kernel = self::bootKernel();
+        self::bootKernel();
 
-        $em = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $this->repository = $em->getRepository(Post::class);
+        $this->repository = $this->getService(PostRepository::class);
     }
 
     public function testRepositoryCanBeCreated()
@@ -42,5 +38,10 @@ class PostRepositoryTest extends KernelTestCase
         $posts = $this->repository->findBy(['category' => 1]);
 
         self::assertCount(1, $posts);
+    }
+
+    private function getService(string $serviceName)
+    {
+        return self::$kernel->getContainer()->get($serviceName);
     }
 }
