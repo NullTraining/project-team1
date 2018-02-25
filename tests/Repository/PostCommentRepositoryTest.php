@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Repository;
 
-use App\Entity\Post;
 use App\Entity\PostComment;
 use App\Repository\PostCommentRepository;
-use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class PostCommentRepositoryTest extends KernelTestCase
 {
-    /** @var PostRepository */
+    /** @var PostCommentRepository */
     private $repository;
 
     public function setup()
@@ -31,18 +29,18 @@ class PostCommentRepositoryTest extends KernelTestCase
         self::assertInstanceOf(PostCommentRepository::class, $this->repository);
     }
 
-    public function testRepositoryCanFindPostByPostCommentId()
+    public function testRepositoryCanFindPostCommentById()
     {
-        /** @var Post */
-        $post = $this->repository->find(1);
+        /** @var PostComment */
+        $postComment = $this->repository->find(1);
 
-        self::assertEquals(1, $post->getId());
+        self::assertEquals(1, $postComment->getId());
     }
 
-    public function testRepositoryCanFindCommentsByPostId()
+    public function testRepositoryCanFindPostCommentsByPostId()
     {
-        $posts = $this->repository->findBy(['post' => 1234]);
+        $postsComments = $this->repository->findBy(['post' => 1234]);
 
-        self::assertCount(1, $posts);
+        self::assertCount(1, $postsComments);
     }
 }
