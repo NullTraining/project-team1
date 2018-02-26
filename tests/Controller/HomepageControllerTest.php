@@ -14,7 +14,7 @@ class HomepageControllerTest extends WebTestCase
 
         $client->request('GET', $url);
 
-        $expectedToSee = 'Intranet';
+        $expectedToSee = 'Redirecting';
         self::assertContains($expectedToSee, $client->getResponse()->getContent());
     }
 }
