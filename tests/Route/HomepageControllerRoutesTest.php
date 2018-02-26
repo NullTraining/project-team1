@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class HomepageControllerRoutesTest extends WebTestCase
 {
-
     private $repository;
     private $client;
 
@@ -23,7 +22,7 @@ class HomepageControllerRoutesTest extends WebTestCase
 
         $this->repository = $em->getRepository(User::class);
 
-        $this->user = $this->repository->find(1);
+        $this->user   = $this->repository->find(1);
         $this->client = self::createClient();
     }
 
@@ -45,10 +44,10 @@ class HomepageControllerRoutesTest extends WebTestCase
 
     private function logIn()
     {
-        $session = $this->client->getContainer()->get('session');
+        $session         = $this->client->getContainer()->get('session');
         $firewallContext = 'main';
 
-        $token = new UsernamePasswordToken($this->user, null, $firewallContext, array('ROLE_ADMIN'));
+        $token = new UsernamePasswordToken($this->user, null, $firewallContext, ['ROLE_ADMIN']);
         $session->set('_security_'.$firewallContext, serialize($token));
         $session->save();
 
