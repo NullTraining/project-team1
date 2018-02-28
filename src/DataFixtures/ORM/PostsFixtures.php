@@ -15,15 +15,14 @@ class PostsFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        /** @var User $ceo */
+        /** @var User */
         $ceo = $this->getReference('user-admin');
 
-        /** @var Category $declarations */
+        /** @var Category */
         $declarations    = $this->getReference('category-declarations');
-        /** @var Category $businessReports */
+        /** @var Category */
         $businessReports = $this->getReference('category-business-reports');
 
-        /** @var Post $declarationPost */
         $declarationPost = new Post();
 
         $declarationPost->setId(1234);
@@ -33,7 +32,6 @@ class PostsFixtures extends AbstractFixture implements OrderedFixtureInterface
         $declarationPost->setAuthor($ceo);
         $declarationPost->setCategory($declarations);
 
-        /** @var Post $businessReportPost */
         $businessReportPost = new Post();
 
         $businessReportPost->setId(4321);

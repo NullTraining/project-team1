@@ -15,26 +15,24 @@ class PostCommentsFixtures extends AbstractFixture implements OrderedFixtureInte
 {
     public function load(ObjectManager $manager)
     {
-        /** @var Post $declarationPost */
+        /** @var Post */
         $declarationPost    = $this->getReference('declarationPost');
 
-        /** @var Post $businessReportPost */
+        /** @var Post */
         $businessReportPost = $this->getReference('businessReportPost');
 
-        /** @var User $regularUser */
+        /** @var User */
         $regularUser = $this->getReference('user-regular');
 
-        /** @var User $adminUser */
+        /** @var User */
         $adminUser   = $this->getReference('user-admin');
 
-        /** @var PostComment $declarationPostComment */
         $declarationPostComment    = new PostComment();
         $declarationPostComment->setId(1234);
         $declarationPostComment->setComment('I approve of this declaration!');
         $declarationPostComment->setPost($declarationPost);
         $declarationPostComment->setUser($regularUser);
 
-        /** @var PostComment $businessReportPostComment */
         $businessReportPostComment = new PostComment();
         $businessReportPostComment->setId(4321);
         $businessReportPostComment->setComment('I\'m taking the biggest cut of profit for myself! HAHA! SO LONG, SUCKERS!!');

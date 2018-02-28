@@ -13,13 +13,13 @@ use PHPUnit\Framework\TestCase;
 
 class PostCommentTest extends TestCase
 {
-    /** @var PostComment $postComment */
+    /** @var PostComment */
     private $postComment;
-    /** @var User|MockInterface $user */
+    /** @var User|MockInterface */
     private $user;
     /** @var string $comment */
     private $comment;
-    /** @var Post|MockInterface $post */
+    /** @var Post|MockInterface */
     private $post;
     /** @var \DateTime */
     private $timestamp;
