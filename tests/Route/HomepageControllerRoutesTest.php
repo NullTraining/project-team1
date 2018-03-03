@@ -34,7 +34,7 @@ class HomepageControllerRoutesTest extends WebTestCase
         $this->logIn();
         $this->client->request('GET', $url);
 
-        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
     }
 
     public function urlProvider()
