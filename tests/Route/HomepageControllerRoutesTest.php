@@ -29,12 +29,24 @@ class HomepageControllerRoutesTest extends WebTestCase
     /**
      * @dataProvider urlProvider
      */
-    public function testPageIsSuccessful($url)
+    public function testLoggedInUserCanSeeHomepage($url)
     {
         $this->logIn();
         $this->client->request('GET', $url);
 
         $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+    }
+
+    /**
+     * @dataProvider urlProvider
+     */
+    public function testAnonymousUserWillBeRedirected($url)
+    {
+        $this->client->request('GET', $url);
+
+        $redirectCodes = [301, 302];
+
+        $this->assertContains($this->client->getResponse()->getStatusCode(), $redirectCodes);
     }
 
     public function urlProvider()
@@ -47,7 +59,7 @@ class HomepageControllerRoutesTest extends WebTestCase
         $session         = $this->client->getContainer()->get('session');
         $firewallContext = 'main';
 
-        $token = new UsernamePasswordToken($this->user, null, $firewallContext, ['ROLE_ADMIN']);
+        $token = new UsernamePasswordToken($this->user, null, $firewallContext, ['ROLE_USER']);
         $session->set('_security_'.$firewallContext, serialize($token));
         $session->save();
 
