@@ -15,6 +15,9 @@ class HomepageControllerTest extends WebTestCase
         $client->request('GET', $url);
 
         $expectedToSee = 'Intranet';
-        self::assertContains($expectedToSee, $client->getResponse()->getContent());
+
+        if (null !== ($client->getResponse())) {
+            self::assertContains($expectedToSee, $client->getResponse()->getContent());
+        }
     }
 }

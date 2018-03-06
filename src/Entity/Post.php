@@ -149,7 +149,7 @@ class Post
     }
 
     /**
-     * @return string
+     * @return User
      */
     public function getAuthor(): User
     {
@@ -157,9 +157,9 @@ class Post
     }
 
     /**
-     * @param \App\Entity\User $author
+     * @param User $author
      */
-    public function setAuthor(\App\Entity\User $author): void
+    public function setAuthor(User $author): void
     {
         $this->author = $author;
     }

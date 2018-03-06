@@ -11,45 +11,47 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 class UserTest extends KernelTestCase
 {
     /** @var User */
-    private $user;
+    private $adminUser;
+
+    /** @var User */
+    private $regularUser;
 
     /** @var UserRepository */
     private $repository;
 
-    public function setUp()
+    public function setup()
     {
-        $kernel = self::bootKernel();
+        self::bootKernel();
 
-        $em = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        $this->repository = $this->getService(UserRepository::class);
 
-        $this->repository = $em->getRepository(User::class);
+        $this->adminUser = $this->repository->findOneBy(['username' => 'admin']);
+
+        $this->regularUser = $this->repository->findOneBy(['username' => 'visitor']);
     }
 
     public function testUserHasPosts()
     {
-        $this->user = $this->repository->findOneBy(['username' => 'admin']);
-
-        $posts = $this->user->getPosts();
+        $posts = $this->adminUser->getPosts();
 
         self::assertNotEmpty($posts);
     }
 
     public function testUserHasComments()
     {
-        $this->user = $this->repository->findOneBy(['username' => 'admin']);
-
-        $comments = $this->user->getComments();
+        $comments = $this->adminUser->getComments();
 
         self::assertNotEmpty($comments);
     }
 
     public function testUserCanBePromotedToAdmin()
     {
-        $this->user = $this->repository->findOneBy(['username' => 'user']);
+        $this->regularUser->promoteToAdministrator();
+        self::assertTrue($this->regularUser->isAdministrator());
+    }
 
-        $this->user->promoteToAdministrator();
-        self::assertTrue($this->user->isAdministrator());
+    private function getService(string $serviceName)
+    {
+        return self::$kernel->getContainer()->get($serviceName);
     }
 }

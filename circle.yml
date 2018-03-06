@@ -51,6 +51,10 @@ jobs:
           command: vendor/bin/phing phpunit
 
       - run:
+          name: PHPStan
+          command: vendor/bin/phing phpstan
+
+      - run:
           name: Php-cs-fixer
           command: vendor/bin/phing php-cs-fixer-check
 

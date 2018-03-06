@@ -1,0 +1,8 @@
+parameters:
+    ignoreErrors:
+        - '#Parameter .* .*Mockery\\MockInterface given.#'
+        - '#Property .* does not accept Mockery\\MockInterface.#'
+    autoload_directories:
+        - vendor/bin/.phpunit/phpunit-5.7/src/
+    excludes_analyse:
+        - %rootDir%/../../../src/Migration

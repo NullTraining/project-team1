@@ -8,20 +8,23 @@ use App\Entity\Post;
 use App\Entity\PostComment;
 use App\Entity\User;
 use Mockery;
+use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 
 class PostCommentTest extends TestCase
 {
-    /** @var PostComment $postComment */
+    /** @var PostComment */
     private $postComment;
-    /** @var User $user */
+    /** @var User|MockInterface */
     private $user;
     /** @var string $comment */
     private $comment;
-    /** @var Post $post */
+    /** @var Post|MockInterface */
     private $post;
     /** @var \DateTime */
     private $timestamp;
+    /** @var int */
+    private $id;
 
     public function setUp()
     {
